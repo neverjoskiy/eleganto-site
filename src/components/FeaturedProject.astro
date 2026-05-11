@@ -1,0 +1,82 @@
+---
+import { projects, langColors } from '../data/projects';
+import { renderIcon, iconMap } from '../utils/icon';
+
+const featured = projects.find((p) => p.desc?.includes('flagship')) || projects[0];
+const badgeColor = featured.lang && langColors[featured.lang] ? langColors[featured.lang] : '#a1a1aa';
+---
+
+<section class="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 border-t border-border">
+  <div class="max-w-6xl mx-auto">
+    <div class="animate-on-scroll mb-12">
+      <h2 class="font-mono text-3xl sm:text-4xl font-bold text-text tracking-tight">
+        featured
+      </h2>
+      <p class="mt-2 text-text-muted text-sm">
+        the project i'm most proud of
+      </p>
+    </div>
+
+    <a
+      href={featured.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="group block relative rounded-3xl bg-card border border-border overflow-hidden hover:border-accent/40 transition-all duration-500 animate-on-scroll delay-100"
+    >
+      <!-- Glow effect -->
+      <div class="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 group-hover:bg-accent/15 transition-colors"></div>
+
+      <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 sm:p-10">
+        <!-- Left: Info -->
+        <div class="flex flex-col justify-center">
+          <div class="inline-flex items-center gap-2 mb-4">
+            <span class="px-2.5 py-1 rounded-md bg-accent/10 border border-accent/20 text-xs font-mono text-accent">
+              flagship
+            </span>
+            <span class="flex items-center gap-1 text-xs font-mono text-text-muted">
+              <span class="block w-3.5 h-3.5">
+                <Fragment set:html={renderIcon(iconMap['star'], 'w-3.5 h-3.5')} />
+              </span>
+              {featured.stars}
+            </span>
+          </div>
+
+          <h3 class="text-3xl sm:text-4xl font-bold text-text font-mono tracking-tight mb-4 group-hover:text-accent transition-colors">
+            {featured.name}
+          </h3>
+
+          <p class="text-text-muted leading-relaxed mb-8 max-w-lg">
+            {featured.desc || 'A carefully crafted project built with attention to detail and clean architecture.'}
+          </p>
+
+          <div class="flex items-center gap-4">
+            <span class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-background border border-border text-sm font-mono text-text hover:border-accent/30 transition-colors">
+              <span
+                class="w-2.5 h-2.5 rounded-full"
+                style={`background-color: ${badgeColor};`}
+              ></span>
+              {featured.lang || 'mixed'}
+            </span>
+
+            <span class="inline-flex items-center gap-2 text-sm text-text-muted group-hover:text-accent transition-colors">
+              view on github
+              <span class="block w-4 h-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Right: Visual -->
+        <div class="flex items-center justify-center">
+          <div class="relative w-full max-w-sm aspect-square rounded-2xl bg-background border border-border flex items-center justify-center group-hover:border-accent/20 transition-colors">
+            <div class="absolute inset-0 bg-accent/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <span class="block w-24 h-24 text-accent/30 group-hover:text-accent/50 group-hover:scale-110 transition-all duration-500">
+              <Fragment set:html={renderIcon(iconMap[featured.icon] || iconMap['crown'], 'w-24 h-24')} />
+            </span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>

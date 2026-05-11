@@ -1,0 +1,52 @@
+---
+import { renderIcon, iconMap } from '../utils/icon';
+---
+
+<section id="contact" class="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 border-t border-border relative overflow-hidden">
+  <!-- Background glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+  <div class="max-w-4xl mx-auto text-center relative">
+    <div class="animate-on-scroll">
+      <h2 class="font-mono text-3xl sm:text-4xl font-bold text-text tracking-tight mb-4">
+        let's build something
+      </h2>
+      <p class="text-text-muted text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed">
+        open for collaborations, interesting projects, and good conversations. 
+        if you have an idea — let's talk.
+      </p>
+    </div>
+
+    <div class="animate-on-scroll delay-100 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a
+        href="mailto:hello@neverocheg.dev"
+        class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-accent text-background font-medium text-sm hover:brightness-110 hover:-translate-y-0.5 transition-all duration-300 shadow-[0_0_40px_rgba(167,139,250,0.2)]"
+      >
+        <span class="block w-5 h-5">
+          <Fragment set:html={renderIcon(iconMap['mail'], 'w-5 h-5')} />
+        </span>
+        hello@neverocheg.dev
+      </a>
+
+      <a
+        href="https://github.com/neverjoskiy"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-card border border-border text-text font-medium text-sm hover:border-accent/40 hover:-translate-y-0.5 transition-all duration-300"
+      >
+        <span class="block w-5 h-5 text-text-muted">
+          <Fragment set:html={renderIcon(iconMap['github'], 'w-5 h-5')} />
+        </span>
+        github.com/neverjoskiy
+      </a>
+    </div>
+
+    <div class="animate-on-scroll delay-200 mt-12 flex items-center justify-center gap-6 text-text-muted">
+      <span class="text-xs font-mono">available for freelance</span>
+      <span class="w-1 h-1 rounded-full bg-accent"></span>
+      <span class="text-xs font-mono">open source enthusiast</span>
+      <span class="w-1 h-1 rounded-full bg-accent"></span>
+      <span class="text-xs font-mono">systems & tooling</span>
+    </div>
+  </div>
+</section>

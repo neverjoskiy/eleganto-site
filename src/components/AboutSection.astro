@@ -1,0 +1,61 @@
+---
+import { renderIcon, iconMap } from '../utils/icon';
+---
+
+<section id="about" class="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 border-t border-border">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Text -->
+      <div class="animate-on-scroll">
+        <h2 class="font-mono text-3xl sm:text-4xl font-bold text-text tracking-tight mb-6">
+          about
+        </h2>
+        <div class="space-y-4 text-text-muted leading-relaxed">
+          <p>
+            i'm a software craftsman who enjoys building things that are both useful and elegant. 
+            my work spans from low-level systems in <span class="text-accent font-mono">C</span> and <span class="text-accent font-mono">Rust</span> 
+            to automation tools in <span class="text-accent font-mono">Python</span> and web experiments.
+          </p>
+          <p>
+            every project starts with a simple idea: make something that works well and looks good doing it. 
+            no bloat, no unnecessary complexity — just clean code and thoughtful design.
+          </p>
+          <p>
+            currently focused on systems programming, developer tooling, and interactive experiences. 
+            always open to interesting collaborations.
+          </p>
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          {['systems', 'automation', 'tooling', 'ui/ux', 'open source'].map((tag) => (
+            <span class="px-3 py-1.5 rounded-lg bg-card border border-border text-xs font-mono text-text-muted hover:border-accent/30 hover:text-accent transition-colors cursor-default">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Visual -->
+      <div class="animate-on-scroll delay-100 relative">
+        <div class="absolute inset-0 bg-accent/5 rounded-2xl blur-2xl"></div>
+        <div class="relative rounded-2xl bg-card border border-border p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+            <span class="ml-auto font-mono text-xs text-text-muted">about.md</span>
+          </div>
+          <div class="font-mono text-sm text-text-muted space-y-2">
+            <p><span class="text-accent">$</span> whoami</p>
+            <p class="text-text">neverocheg</p>
+            <p><span class="text-accent">$</span> cat interests.txt</p>
+            <p class="text-text">systems, automation, clean code</p>
+            <p><span class="text-accent">$</span> uptime</p>
+            <p class="text-text">coding since 2020</p>
+            <p class="text-accent animate-pulse">_</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

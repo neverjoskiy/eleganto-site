@@ -1,0 +1,90 @@
+---
+import { projects, langColors } from '../data/projects';
+import { renderIcon, iconMap } from '../utils/icon';
+
+// Compute stats from project data
+const totalRepos = projects.length;
+const totalStars = projects.reduce((sum, p) => sum + p.stars, 0);
+
+// Language breakdown
+const langCounts: Record<string, number> = {};
+projects.forEach((p) => {
+  if (p.lang) {
+    langCounts[p.lang] = (langCounts[p.lang] || 0) + 1;
+  }
+});
+
+const langEntries = Object.entries(langCounts)
+  .sort((a, b) => b[1] - a[1])
+  .map(([lang, count]) => ({
+    lang,
+    count,
+    percent: Math.round((count / totalRepos) * 100),
+    color: langColors[lang] || '#a1a1aa',
+  }));
+
+// Featured count
+const featuredCount = projects.filter((p) => p.desc && p.desc.includes('flagship')).length;
+---
+
+<section id="stats" class="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 border-t border-border">
+  <div class="max-w-6xl mx-auto">
+    <div class="mb-12 animate-on-scroll">
+      <h2 class="font-mono text-3xl sm:text-4xl font-bold text-text tracking-tight">
+        stats
+      </h2>
+      <p class="mt-2 text-text-muted text-sm">
+        numbers that tell the story
+      </p>
+    </div>
+
+    <!-- Big numbers -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-12 animate-on-scroll delay-100">
+      <div class="rounded-2xl bg-card border border-border p-5 sm:p-6 hover:border-accent/30 transition-colors">
+        <div class="text-3xl sm:text-4xl font-bold text-text font-mono mb-1">{totalRepos}</div>
+        <div class="text-sm text-text-muted">repositories</div>
+      </div>
+      <div class="rounded-2xl bg-card border border-border p-5 sm:p-6 hover:border-accent/30 transition-colors">
+        <div class="text-3xl sm:text-4xl font-bold text-text font-mono mb-1">{totalStars}</div>
+        <div class="text-sm text-text-muted">stars earned</div>
+      </div>
+      <div class="rounded-2xl bg-card border border-border p-5 sm:p-6 hover:border-accent/30 transition-colors">
+        <div class="text-3xl sm:text-4xl font-bold text-text font-mono mb-1">{langEntries.length}</div>
+        <div class="text-sm text-text-muted">languages</div>
+      </div>
+      <div class="rounded-2xl bg-card border border-border p-5 sm:p-6 hover:border-accent/30 transition-colors">
+        <div class="text-3xl sm:text-4xl font-bold text-text font-mono mb-1">{featuredCount}</div>
+        <div class="text-sm text-text-muted">flagship</div>
+      </div>
+    </div>
+
+    <!-- Language breakdown -->
+    <div class="animate-on-scroll delay-200">
+      <h3 class="font-mono text-sm text-text-muted mb-6 uppercase tracking-wider">language breakdown</h3>
+      <div class="space-y-4">
+        {langEntries.map((entry, i) => (
+          <div class="group">
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2.5">
+                <span
+                  class="w-2.5 h-2.5 rounded-full"
+                  style={`background-color: ${entry.color};`}
+                ></span>
+                <span class="text-sm font-mono text-text">{entry.lang}</span>
+              </div>
+              <span class="text-xs font-mono text-text-muted">
+                {entry.count} repos · {entry.percent}%
+              </span>
+            </div>
+            <div class="h-2 rounded-full bg-background border border-border overflow-hidden">
+              <div
+                class="h-full rounded-full transition-all duration-1000 ease-out group-hover:brightness-110"
+                style={`width: ${entry.percent}%; background-color: ${entry.color}; opacity: 0.85;`}
+              ></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
