@@ -1,0 +1,65 @@
+---
+import { renderIcon, iconMap } from '../utils/icon';
+import { langColors } from '../data/projects';
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+  index: number;
+}
+
+const { project, index } = Astro.props;
+
+const langColor = langColors[project.lang] || '#a1a1aa';
+const delayClass = index < 6 ? `delay-${(index % 5) * 100}` : '';
+---
+
+<a
+  href={project.url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class={`group block rounded-2xl bg-card border border-border p-5 sm:p-6 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_0_30px_rgba(167,139,250,0.12)] transition-all duration-300 animate-on-scroll ${delayClass}`}
+>
+  <div class="flex items-start justify-between mb-4">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-lg bg-background border border-border flex items-center justify-center text-accent group-hover:border-accent/30 transition-colors">
+        <span class="block w-5 h-5">
+          <Fragment set:html={renderIcon(iconMap[project.icon] || iconMap['package'], 'w-5 h-5')} />
+        </span>
+      </div>
+      <h3 class="font-mono text-base font-medium text-text group-hover:text-accent transition-colors">
+        {project.name}
+      </h3>
+    </div>
+    <span class="block w-4 h-4 text-text-muted opacity-0 group-hover:opacity-100 transition-opacity -translate-x-1 group-hover:translate-x-0 duration-300">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+    </span>
+  </div>
+
+  {project.desc && (
+    <p class="text-sm text-text-muted mb-4 leading-relaxed line-clamp-2">
+      {project.desc}
+    </p>
+  )}
+
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      {project.lang && (
+        <span class="inline-flex items-center gap-1.5 text-xs font-mono">
+          <span
+            class="w-2.5 h-2.5 rounded-full"
+            style={`background-color: ${langColor};`}
+          ></span>
+          <span class="text-text-muted">{project.lang}</span>
+        </span>
+      )}
+    </div>
+
+    <div class="flex items-center gap-1 text-xs text-text-muted font-mono">
+      <span class="block w-3.5 h-3.5">
+        <Fragment set:html={renderIcon(iconMap['star'], 'w-3.5 h-3.5')} />
+      </span>
+      <span>{project.stars}</span>
+    </div>
+  </div>
+</a>

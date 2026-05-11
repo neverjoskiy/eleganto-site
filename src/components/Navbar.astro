@@ -1,0 +1,69 @@
+---
+import { renderIcon, iconMap } from '../utils/icon';
+---
+
+<nav
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent"
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a
+        href="#"
+        class="font-mono text-lg font-medium tracking-tight text-text hover:text-accent transition-colors"
+      >
+        neverocheg
+      </a>
+
+      <div class="flex items-center gap-6">
+        <a
+          href="#projects"
+          class="text-sm text-text-muted hover:text-text transition-colors"
+        >
+          projects
+        </a>
+        <a
+          href="#stack"
+          class="text-sm text-text-muted hover:text-text transition-colors"
+        >
+          stack
+        </a>
+        <a
+          href="https://github.com/neverjoskiy"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-text-muted hover:text-text transition-colors"
+          aria-label="GitHub"
+        >
+          <span class="block w-5 h-5">
+            <Fragment set:html={renderIcon(iconMap['github'], 'w-5 h-5')} />
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  #navbar.scrolled {
+    background: rgba(9, 9, 11, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-color: rgba(39, 39, 42, 0.5);
+  }
+</style>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  if (navbar) {
+    const onScroll = () => {
+      if (window.scrollY > 40) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+</script>

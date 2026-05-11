@@ -1,0 +1,20 @@
+---
+import { projects } from '../data/projects';
+
+const names = projects.map((p) => p.name);
+// Duplicate for seamless infinite scroll
+const allNames = [...names, ...names, ...names, ...names];
+---
+
+<section class="py-12 overflow-hidden border-t border-border bg-card/30">
+  <div class="relative">
+    <div class="flex animate-marquee whitespace-nowrap">
+      {allNames.map((name, i) => (
+        <span class="inline-flex items-center mx-6 text-lg sm:text-xl font-mono text-text-muted/60">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent/40 mr-4"></span>
+          {name}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>

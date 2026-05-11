@@ -1,0 +1,23 @@
+---
+import { projects } from '../data/projects';
+import ProjectCard from './ProjectCard.astro';
+---
+
+<section id="projects" class="py-24 sm:py-32 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto">
+    <div class="mb-12 animate-on-scroll">
+      <h2 class="font-mono text-3xl sm:text-4xl font-bold text-text tracking-tight">
+        projects
+      </h2>
+      <p class="mt-2 text-text-muted text-sm">
+        {projects.length} repositories · open source
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+      {projects.map((project, index) => (
+        <ProjectCard project={project} index={index} />
+      ))}
+    </div>
+  </div>
+</section>

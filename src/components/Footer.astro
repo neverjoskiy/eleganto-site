@@ -1,0 +1,36 @@
+---
+import { renderIcon, iconMap } from '../utils/icon';
+---
+
+<footer class="py-16 px-4 sm:px-6 lg:px-8 border-t border-border">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+    <div class="text-center sm:text-left">
+      <p class="font-mono text-sm text-text-muted">
+        neverocheg · eleganto · 2025
+      </p>
+    </div>
+
+    <div class="flex items-center gap-5">
+      <a
+        href="https://github.com/neverjoskiy"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-text-muted hover:text-accent transition-colors"
+        aria-label="GitHub"
+      >
+        <span class="block w-5 h-5">
+          <Fragment set:html={renderIcon(iconMap['github'], 'w-5 h-5')} />
+        </span>
+      </a>
+      <a
+        href="mailto:hello@neverocheg.dev"
+        class="text-text-muted hover:text-accent transition-colors"
+        aria-label="Email"
+      >
+        <span class="block w-5 h-5">
+          <Fragment set:html={renderIcon(iconMap['mail'], 'w-5 h-5')} />
+        </span>
+      </a>
+    </div>
+  </div>
+</footer>

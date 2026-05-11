@@ -1,0 +1,44 @@
+---
+import { renderIcon, iconMap } from '../utils/icon';
+
+const stack = [
+  { name: 'Python', icon: 'code-2', color: '#3572A5' },
+  { name: 'Rust', icon: 'settings', color: '#dea584' },
+  { name: 'C', icon: 'cpu', color: '#555555' },
+  { name: 'JavaScript', icon: 'braces', color: '#f1e05a' },
+  { name: 'HTML / CSS', icon: 'layout', color: '#e34c26' },
+  { name: 'Electron', icon: 'orbit', color: '#9feaf9' },
+  { name: 'Telegram Bot API', icon: 'bot', color: '#26a5e4' },
+];
+---
+
+<section id="stack" class="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 border-t border-border">
+  <div class="max-w-6xl mx-auto">
+    <div class="mb-12 animate-on-scroll">
+      <h2 class="font-mono text-3xl sm:text-4xl font-bold text-text tracking-tight">
+        stack
+      </h2>
+      <p class="mt-2 text-text-muted text-sm">
+        technologies & tools I work with
+      </p>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-4 sm:gap-6 animate-on-scroll delay-100">
+      {stack.map((item) => (
+        <div class="group flex items-center gap-3 px-5 py-3 rounded-xl bg-card border border-border hover:border-accent/30 hover:-translate-y-0.5 transition-all duration-300">
+          <div
+            class="w-8 h-8 rounded-lg flex items-center justify-center"
+            style={`background-color: ${item.color}15; color: ${item.color};`}
+          >
+            <span class="block w-4 h-4">
+              <Fragment set:html={renderIcon(iconMap[item.icon], 'w-4 h-4')} />
+            </span>
+          </div>
+          <span class="text-sm font-medium text-text group-hover:text-accent transition-colors">
+            {item.name}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
